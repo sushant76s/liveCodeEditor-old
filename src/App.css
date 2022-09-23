@@ -1,0 +1,125 @@
+.homePageWrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.formWrapper {
+  background: #282a36;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+.mainLabel {
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+.homePageLogo {
+  height: 80px;
+  margin-bottom: 10px;
+}
+.inputBox {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-bottom: 10px;
+  background: #eee;
+  font-size: 16px;
+  font-weight: bold;
+}
+.btn {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+.joinBtn, .leaveBtn {
+  background: rgb(73, 179, 73);
+  width: 100px;
+  margin-left: auto;
+}
+
+.joinBtn:hover, .leaveBtn:hover {
+  background: rgb(17, 73, 17);
+}
+
+.createInfo {
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.createNewBtn {
+  color: rgb(121, 207, 121);
+  text-decoration: none;
+  border-bottom: 1px solid rgb(127, 211, 127);
+  transition: all 0.3s ease-in-out;
+}
+.createNewBtn:hover {
+  color: rgb(5, 170, 5);
+  border-color: rgb(5, 177, 5);
+}
+
+/* Css for the editor page */
+
+.mainWrap {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  /* height: 100vh; */
+
+}
+.aside {
+  background: #1c1e29;
+  padding: 16px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.asideInner {
+  flex: 1;
+}
+.clientsList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.client {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+}
+.username {
+  margin-top: 10px;
+}
+.logo {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 10px;
+}
+.logoImage {
+  height: 60px;
+}
+.leaveBtn {
+  width: 100%;
+  margin-top: 20px;
+}
+.CodeMirror {
+  min-height: calc(100vh - 20px);
+   font-size: 20px;
+   line-height: 1.6;
+   padding-top: 20px;
+}
