@@ -20,9 +20,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start:front": "react-scripts start",
+    "start:front": "node --max_old_space_size=2560 node_modules/.bin/react-scripts start",
     "start": "npm run build && npm run server:prod",
-    "build": "react-scripts build",
+    "build": "node --max_old_space_size=2560 node_modules/.bin/react-scripts build",
     "server:dev": "nodemon server.js",
     "server:prod": "node server.js",
     "test": "react-scripts test",
