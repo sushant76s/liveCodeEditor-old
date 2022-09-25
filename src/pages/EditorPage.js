@@ -45,7 +45,7 @@ const EditorPage = () => {
         ({ clients, username, socketId}) => {
           if(username !== location.state?.username) {
             toast.success(`${username} Joined the Room`);
-            console.log(`${username} joined.`);
+            // console.log(`${username} joined.`);
           }
 
           setClients(clients);
@@ -59,7 +59,7 @@ const EditorPage = () => {
       // listening for DISCONNECTED
 
       socketRef.current.on(ACTIONS.DISCONNECTED, ({socketId, username})=>{
-        toast.success(`${username} left the room.`);
+        toast.success(`${username} Left the room.`);
         setClients((prev) =>{
           return prev.filter(
             (client) => client.socketId !== socketId);

@@ -18,7 +18,7 @@ const Home = () => {
 
   const joinRoom = () => {
     if(!roomId || !username) {
-      toast.error('Room id and username is required');
+      toast.error('Room Id and username is required!');
       return;
     }
     //rediret
@@ -41,12 +41,12 @@ const Home = () => {
     <div className='homePageWrapper'>
       <div className='formWrapper'>
           <img className='homePageLogo' src='/code-image.png' alt='logo'/>
-          <h4 className='mainLabel'>Paste Invitation Room ID</h4>
+          <h4 className='mainLabel'>Paste invitation room Id...</h4>
           <div className='inputGroup'>
             <input
               type='text'
               className='inputBox'
-              placeholder='Room Id'
+              placeholder='Room ID'
               onChange={(e) => setRoomId(e.target.value)}
               value={roomId}
               onKeyUp={handleInputEnter}
@@ -68,7 +68,7 @@ const Home = () => {
       </div>
 
       <footer>
-        <h4>Developed by Sushant</h4>
+        <h4>Developed by <a href='https://github.com/susverma' target='_blank'>@Sushant</a></h4>
       </footer>
 
     </div>
