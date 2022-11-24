@@ -57,6 +57,7 @@ const EditorPage = () => {
       );
 
       // listening for DISCONNECTED
+      //when DISCONNECTED
 
       socketRef.current.on(ACTIONS.DISCONNECTED, ({socketId, username})=>{
         toast.success(`${username} Left the room.`);
