@@ -1,4 +1,5 @@
 import React, {useEffect, useRef} from 'react';
+// import PropTypes from 'prop-types';
 import Codemirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/lib/codemirror.css'
@@ -7,13 +8,19 @@ import 'codemirror/addon/edit/closetag';
 import 'codemirror/addon/edit/closebrackets';
 import ACTIONS from '../Actions';
 
-const Editor = ({socketRef, roomId, onCodeChange}) => {
+const Editor = ({socketRef, roomId, onCodeChange, theme}) => {
   const editorRef = useRef(null);
+  // console.log(theme);
   useEffect(() => {
     async function init() {
+
+      if (editorRef.current) {
+        editorRef.current.toTextArea();
+      }
+
       editorRef.current = Codemirror.fromTextArea(document.getElementById('liveEditor'), {
         mode: {name: 'javascript', json: true},
-        theme: 'dracula',
+        theme: theme,
         autoCloseTags: true,
         autoCloseBrackets: true,
         lineNumbers: true,
@@ -41,7 +48,14 @@ const Editor = ({socketRef, roomId, onCodeChange}) => {
 
     }
     init();
-  }, []);
+
+    // Cleanup function to destroy the editor when the component is unmounted
+    return () => {
+      if (editorRef.current) {
+        editorRef.current.toTextArea();
+      }
+    };
+  }, [theme]);
 
 
   useEffect(() => {
@@ -64,5 +78,9 @@ const Editor = ({socketRef, roomId, onCodeChange}) => {
     <textarea id='liveEditor'></textarea>
   )
 }
+
+// Editor.propTypes = {
+//   theme: PropTypes.string,
+// };
 
 export default Editor
