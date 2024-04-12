@@ -10,17 +10,22 @@ import {
   useParams,
 } from "react-router-dom";
 import toast from "react-hot-toast";
+import CodeEditor from "../components/CodeEditor";
+import Chat from "../components/Chat";
+import Sidebar from "../components/Sidebar";
 
 const EditorPage = () => {
   const socketRef = useRef(null);
   const codeRef = useRef(null);
   const location = useLocation();
   const { roomId } = useParams();
+  const [language, setLanguage] = useState("cpp");
 
   const reactNavigator = useNavigate();
 
   const [clients, setClients] = useState([]);
-  const [ theme, setTheme ] = useState('default');
+  const [theme, setTheme] = useState("light");
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const toggleTheme = (selectedTheme) => {
     setTheme(selectedTheme);
@@ -95,9 +100,21 @@ const EditorPage = () => {
   if (!location.state) {
     return <Navigate to="/" />;
   }
+
+  const openChat = () => {
+    setIsChatOpen(true);
+  };
+
+  const toggleChatPanel = () => {
+    setIsChatOpen((prev) => !prev);
+  };
+
+  console.log("Clients: ", clients);
+  console.log("room id: ", roomId);
+
   return (
     <div className="mainWrap">
-      <div className="aside">
+      {/* <div className="aside">
         <div className="asideInner">
           <div className="logo">
             <img className="logoImage" src="/code-image.png" alt="logo" />
@@ -109,30 +126,60 @@ const EditorPage = () => {
             ))}
           </div>
         </div>
-        <div className="selectTheme">
-          <label>Choose Theme:</label>
-          <select value={theme} onChange={(e) => toggleTheme(e.target.value)}>
-            <option value="default">Default</option>
-            <option value="dracula">Dracula</option>
-          </select>
-        </div>
         <button className="btn copyBtn" onClick={copyRoomId}>
           Copy Room ID
+        </button>
+        <button className="btn chatBtn" onClick={openChat}>
+          Open Chat
         </button>
         <button className="btn leaveBtn" onClick={leaveRoom}>
           Leave
         </button>
-      </div>
-      <div className="editorWrap">
-        <Editor
+      </div> */}
+      <Sidebar
+        clients={clients}
+        copyRoomId={copyRoomId}
+        openChat={openChat}
+        leaveRoom={leaveRoom}
+      />
+      <div className={`editorWrap ${isChatOpen ? "collapsed" : ""}`}>
+        <div className="row">
+          <div className="column">
+            <select
+              className="selectLanguage"
+              onChange={(e) => setLanguage(e.target.value)}
+            >
+              <option value="cpp">C++</option>
+              <option value="javascript">JavaScript</option>
+              <option value="java">Java</option>
+              {/* Add more options for other languages */}
+            </select>
+          </div>
+          <div className="column">
+            <select
+              className="selectTheme"
+              onChange={(e) => setTheme(e.target.value)}
+            >
+              <option value="light">Light</option>
+              <option value="vs-dark">Dark</option>
+              {/* Add more options for other themes */}
+            </select>
+          </div>
+        </div>
+        <CodeEditor
           socketRef={socketRef}
           roomId={roomId}
-          onCodeChange={(code) => {
-            codeRef.current = code;
-          }}
           theme={theme}
+          language={language}
         />
       </div>
+      <Chat
+        isOpen={isChatOpen}
+        onClose={toggleChatPanel}
+        socketRef={socketRef}
+        roomId={roomId}
+        username={location.state?.username}
+      />
     </div>
   );
 };
